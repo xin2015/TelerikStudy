@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikStudy.Model", "TelerikStudy.Model\TelerikStudy.Model.csproj", "{71E4FACD-4513-4F39-8F50-9CF5618D1E62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikStudy.Client", "TelerikStudy.Client\TelerikStudy.Client.csproj", "{F219608E-937B-4716-BBD3-E5CEA8515E3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{71E4FACD-4513-4F39-8F50-9CF5618D1E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71E4FACD-4513-4F39-8F50-9CF5618D1E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71E4FACD-4513-4F39-8F50-9CF5618D1E62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F219608E-937B-4716-BBD3-E5CEA8515E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F219608E-937B-4716-BBD3-E5CEA8515E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F219608E-937B-4716-BBD3-E5CEA8515E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F219608E-937B-4716-BBD3-E5CEA8515E3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
