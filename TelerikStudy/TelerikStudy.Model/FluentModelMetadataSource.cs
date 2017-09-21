@@ -53,6 +53,7 @@ namespace TelerikStudy.Model
         {
             container.NameGenerator.SourceStrategy = NamingSourceStrategy.Property;
             container.NameGenerator.RemoveCamelCase = false;
+            container.NameGenerator.ResolveReservedWords = false;
         }
 
         private MappingConfiguration<MissingDataRecord> GetMissingDataRecordMappingConfiguration()
@@ -89,12 +90,14 @@ namespace TelerikStudy.Model
         {
             MappingConfiguration<StationHourMonitorAirQuality> configuration = new MappingConfiguration<StationHourMonitorAirQuality>();
 
-            configuration.MapType().WithConcurencyControl(OptimisticConcurrencyControlStrategy.Timestamp).ToTable(typeof(StationHourMonitorAirQuality).Name);
+            configuration.MapType().ToTable(typeof(StationHourMonitorAirQuality).Name);
 
             configuration.HasProperty(x => x.Code).IsIdentity().IsNotNullable().HasColumnType("nvarchar").HasLength(64);
             configuration.HasProperty(x => x.Time).IsIdentity();
             configuration.HasProperty(x => x.Type).HasColumnType("nvarchar").HasLength(8);
             configuration.HasProperty(x => x.PrimaryPollutant).HasColumnType("nvarchar").HasLength(128);
+
+            configuration.HasAssociation(x => x.Station).WithOpposite(x => x.HourMonitorAirQualities).HasConstraint((x, y) => x.Code == y.Code).IsRequired();
 
             return configuration;
         }
@@ -502,8 +505,7 @@ namespace TelerikStudy.Model
             return configuration;
         }
 
-        public void PrepareCarPropertyConfigurations
-            (MappingConfiguration<Car> configuration)
+        public void PrepareCarPropertyConfigurations(MappingConfiguration<Car> configuration)
         {
             configuration.HasProperty(x => x.CarID).
                 IsIdentity(KeyGenerator.Autoinc).
@@ -602,8 +604,7 @@ namespace TelerikStudy.Model
                 HasDefaultValue();
         }
 
-        public void PrepareCarAssociationConfigurations
-            (MappingConfiguration<Car> configuration)
+        public void PrepareCarAssociationConfigurations(MappingConfiguration<Car> configuration)
         {
             configuration.HasAssociation(x => x.RentalOrders).
                 HasFieldName("_rentalOrders").

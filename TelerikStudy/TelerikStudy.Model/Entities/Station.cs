@@ -16,5 +16,6 @@ namespace TelerikStudy.Model.Entities
         public int Order { get; set; }
         public DateTime CreationTime { get; set; }
         public DateTime ModificationTime { get; set; }
+        public IList<StationHourMonitorAirQuality> HourMonitorAirQualities { get; set; }
     }
 }

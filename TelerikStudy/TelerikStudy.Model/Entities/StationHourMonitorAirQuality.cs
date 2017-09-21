@@ -19,5 +19,6 @@ namespace TelerikStudy.Model.Entities
         public double? AQI { get; set; }
         public string Type { get; set; }
         public string PrimaryPollutant { get; set; }
+        public Station Station { get; set; }
     }
 }
