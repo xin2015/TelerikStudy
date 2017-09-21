@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TelerikStudy.Model.Entities
 {
-    public interface IEntity
+    public interface IAuditedEntity : IEntity
     {
-
+        DateTime ModificationTime { get; set; }
     }
 }

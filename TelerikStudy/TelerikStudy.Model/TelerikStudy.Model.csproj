@@ -57,6 +57,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Base\IAuditedEntity.cs" />
+    <Compile Include="Entities\SofiaCarRental\Car.cs" />
+    <Compile Include="Entities\SofiaCarRental\Category.cs" />
+    <Compile Include="Entities\SofiaCarRental\Customer.cs" />
+    <Compile Include="Entities\SofiaCarRental\Employee.cs" />
+    <Compile Include="Entities\SofiaCarRental\RentalOrder.cs" />
+    <Compile Include="Entities\SofiaCarRental\RentalRate.cs" />
+    <Compile Include="Entities\StationHourMonitorAirQuality.cs" />
     <Compile Include="FluentModelMetadataSource.cs" />
     <Compile Include="Entities\Base\IAirQualityEntity.cs" />
     <Compile Include="Entities\Base\ICodeTimeEntity.cs" />

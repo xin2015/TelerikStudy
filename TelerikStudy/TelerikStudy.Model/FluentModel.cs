@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,25 +31,35 @@ namespace TelerikStudy.Model
 
         public void UpdateSchema()
         {
-            using (FluentModel context = new FluentModel())
+            ISchemaHandler schemaHandler = GetSchemaHandler();
+            string script = null;
+            if (schemaHandler.DatabaseExists())
             {
-                ISchemaHandler schemaHandler = context.GetSchemaHandler();
-                string script = null;
-                if (schemaHandler.DatabaseExists())
-                {
-                    script = schemaHandler.CreateUpdateDDLScript(null);
-                }
-                else
-                {
-                    schemaHandler.CreateDatabase();
-                    script = schemaHandler.CreateDDLScript();
-                }
-                if (!string.IsNullOrEmpty(script))
-                {
-                    schemaHandler.ExecuteDDLScript(script);
-                }
+                script = schemaHandler.CreateUpdateDDLScript(null);
+            }
+            else
+            {
+                schemaHandler.CreateDatabase();
+                script = schemaHandler.CreateDDLScript();
+            }
+            if (!string.IsNullOrEmpty(script))
+            {
+                schemaHandler.ExecuteDDLScript(script);
             }
         }
 
+        //public void AddBySqlBulkCopy(DataTable dt)
+        //{
+        //    using (SqlBulkCopy sbc = new SqlBulkCopy(Connection.ConnectionString))
+        //    {
+        //        sbc.DestinationTableName = dt.TableName;
+        //        sbc.BatchSize = 30000;
+        //        foreach (DataColumn item in dt.Columns)
+        //        {
+        //            sbc.ColumnMappings.Add(item.ColumnName, item.ColumnName);
+        //        }
+        //        sbc.WriteToServer(dt);
+        //    }
+        //}
     }
 }
