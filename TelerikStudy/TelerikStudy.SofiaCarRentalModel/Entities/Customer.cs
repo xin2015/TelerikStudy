@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TelerikStudy.Model.Entities
+namespace TelerikStudy.SofiaCarRentalModel.Entities
 {
     public partial class Customer
     {
