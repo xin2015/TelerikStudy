@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TelerikStudy.Model.Entities
 {
-    public class Station : IAuditedEntity
+    public class District : IAuditedEntity
     {
         public string Code { get; set; }
         public string Name { get; set; }
@@ -17,21 +17,12 @@ namespace TelerikStudy.Model.Entities
         public DateTime CreationTime { get; set; }
         public DateTime ModificationTime { get; set; }
 
-        private IList<StationHourMonitorAirQuality> hourMonitorAirQualities = new List<StationHourMonitorAirQuality>();
-        public IList<StationHourMonitorAirQuality> HourMonitorAirQualities
+        private IList<Station> stations = new List<Station>();
+        public IList<Station> Stations
         {
             get
             {
-                return hourMonitorAirQualities;
-            }
-        }
-
-        private IList<District> districts = new List<District>();
-        public IList<District> Districts
-        {
-            get
-            {
-                return districts;
+                return stations;
             }
         }
     }

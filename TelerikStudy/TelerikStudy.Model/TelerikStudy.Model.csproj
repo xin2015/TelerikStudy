@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\District.cs" />
     <Compile Include="Entities\Base\IAuditedEntity.cs" />
     <Compile Include="Entities\StationHourMonitorAirQuality.cs" />
     <Compile Include="FluentModelMetadataSource.cs" />

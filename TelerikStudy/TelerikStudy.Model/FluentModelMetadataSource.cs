@@ -17,6 +17,7 @@ namespace TelerikStudy.Model
             List<MappingConfiguration> mappingConfigurations = new List<MappingConfiguration>();
 
             mappingConfigurations.Add(GetMissingDataRecordMappingConfiguration());
+            mappingConfigurations.Add(GetDistrictMappingConfiguration());
             mappingConfigurations.Add(GetStationMappingConfiguration());
             mappingConfigurations.Add(GetStationHourMonitorAirQualityMappingConfiguration());
 
@@ -42,6 +43,22 @@ namespace TelerikStudy.Model
             configuration.HasProperty(x => x.Status).HasColumnType("bit");
             configuration.HasProperty(x => x.Message).HasColumnType("nvarchar(MAX)");
             configuration.HasProperty(x => x.ModificationTime).IsVersion();
+
+            return configuration;
+        }
+
+        private MappingConfiguration<District> GetDistrictMappingConfiguration()
+        {
+            MappingConfiguration<District> configuration = new MappingConfiguration<District>();
+
+            configuration.MapType().WithConcurencyControl(OptimisticConcurrencyControlStrategy.Timestamp).ToTable(typeof(District).Name);
+
+            configuration.HasProperty(x => x.Code).IsIdentity().IsNotNullable().HasColumnType("nvarchar").HasLength(64);
+            configuration.HasProperty(x => x.Name).IsNotNullable().HasColumnType("nvarchar").HasLength(256);
+            configuration.HasProperty(x => x.Status).HasColumnType("bit");
+            configuration.HasProperty(x => x.ModificationTime).IsVersion();
+
+            configuration.HasAssociation(x => x.Stations).WithOpposite(x => x.Districts).IsManaged().MapJoinTable("DistrictStation", (x, y) => new { DistrictCode = x.Code, StationCode = y.Code }).CreatePrimaryKeyFromForeignKeys();
 
             return configuration;
         }
@@ -75,6 +92,6 @@ namespace TelerikStudy.Model
 
             return configuration;
         }
-        
+
     }
 }
